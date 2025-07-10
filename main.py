@@ -2,7 +2,7 @@
 паттерн Декоратор
 
 """
-from sys import set_int_max_str_digits
+
 
 # def select(input_func):                         #создали сам декоратор
 #     def output_func():
@@ -144,9 +144,81 @@ from sys import set_int_max_str_digits
                                         #Добро пожаловать в админ панель!
 
 
+"""
+Напишите декоратор log, который будет выводить на экран имя функции 
+и её аргументы перед вызовом функции.
+"""
+
+# def log(func):
+#     def output_func(*args):
+#         print(f"Функция {func.__name__}")
+#         print(f"Аргументы: {args}")
+#         func(*args)
+#     return output_func
+#
+# @log
+# def my_func(*args ):
+#     print(f"Это был декоратор с выводом имени функции и ее аргументами")
+# my_func(1,2,3)
+
+"""
+Создайте декоратор timeit, который будет измерять и выводить время выполнения функции.
+"""
+# import time
+# def timeit(func):
+#     def wrapper():
+#         start_time = time.time()
+#         result = func()
+#         end_time = time.time()
+#         print(f"Время выполнения функции: {end_time - start_time:.8f} секунд")
+#         return result
+#     return wrapper
+#
+# @timeit
+# def sum_function1():
+#     time.sleep(2)
+#     print(25 + 51)
+# @timeit
+# def sum_function2():
+#     time.sleep(3)
+#     print(11+1)
+# @timeit
+# def sum_function3():
+#     time.sleep(4)
+#     print(21 - 11)
+#
+# sum_function1(), sum_function2(), sum_function3()
 
 
 
 
+# def decorator_function(func):
+#     def wrapper():
+#         print("Функция - обертка!")
+#         print(f"Оборачиваемая функция: {func.__name__}")
+#         print("Выполняет обернутую функцию...")
+#         print(func.__name__)
+#         print("Выходим из обертки")
+#     return wrapper
+# @decorator_function
+# def hello_world():
+#     print("Hello world!")
+# hello_world()
 
 
+
+def benchmark(func):
+    import time
+    def wrapper():
+        start = time.time()
+        func()
+        end = time.time()
+        print(f"Время выполнения: {end - start} секунд.")
+    return wrapper
+
+@benchmark
+def fetch_webpage():
+    import requests
+    webpage = requests.get('https://www.google.com/')
+
+fetch_webpage()                 #Время выполнения: 1.065345287322998 секунд.
